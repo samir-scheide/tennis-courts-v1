@@ -1,6 +1,8 @@
 package com.tenniscourts.reservations;
 
-import com.tenniscourts.schedules.Schedule;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -11,8 +13,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import com.tenniscourts.schedules.Schedule;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SpringBootTest
@@ -25,12 +26,15 @@ public class ReservationServiceTest {
 
     @Test
     public void getRefundValueFullRefund() {
+      LocalDateTime startDateTime = LocalDateTime.now().plusDays(2);
+      
         Schedule schedule = new Schedule();
-
-        LocalDateTime startDateTime = LocalDateTime.now().plusDays(2);
-
         schedule.setStartDateTime(startDateTime);
+        
+        Reservation reservation = new Reservation();
+        reservation.setValue(new BigDecimal(10L));
 
-        Assert.assertEquals(reservationService.getRefundValue(Reservation.builder().schedule(schedule).value(new BigDecimal(10L)).build()), new BigDecimal(10));
+        reservation.setSchedule(schedule);
+        Assert.assertEquals(reservationService.getRefundValue(reservation), new BigDecimal(10));
     }
 }

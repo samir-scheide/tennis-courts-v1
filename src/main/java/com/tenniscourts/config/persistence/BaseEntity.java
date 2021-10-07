@@ -16,6 +16,12 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * Base class that should be used by all entity related classes. It keeps all common fields centralized, magin it easier to maintain and the audit scheme work.
+ * @author Samir Scheide
+ *
+ * @param <ID> can be any type, it will the {@link #id}, or unique identifier, type.
+ */
 @MappedSuperclass
 @Getter
 @Setter
@@ -23,28 +29,30 @@ import java.time.LocalDateTime;
 @EntityListeners(CustomAuditEntityListener.class)
 public class BaseEntity<ID> implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private ID id;
+  private static final long serialVersionUID = 6679822722077518593L;
 
-    @Column
-    private String ipNumberUpdate;
-
-    @Column
-    private Long userCreate;
-
-    @Column
-    private Long userUpdate;
-
-    @Column
-    @LastModifiedDate
-    private LocalDateTime dateUpdate;
-
-    @Column
-    private String ipNumberCreate;
-
-    @Column
-    @CreatedDate
-    private LocalDateTime dateCreate;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private ID id;
+  
+  @Column
+  private String ipNumberUpdate;
+  
+  @Column
+  private Long userCreate;
+  
+  @Column
+  private Long userUpdate;
+  
+  @Column
+  @LastModifiedDate
+  private LocalDateTime dateUpdate;
+  
+  @Column
+  private String ipNumberCreate;
+  
+  @Column
+  @CreatedDate
+  private LocalDateTime dateCreate;
 
 }

@@ -9,7 +9,7 @@ import java.net.URI;
 public class BaseRestController {
 
   protected URI locationByEntity(Long entityId){
-        return ServletUriComponentsBuilder.fromCurrentRequest().path(
-                "/{id}").buildAndExpand(entityId).toUri();
-    }
+    return ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(entityId).toUri();
+  }
+  
 }
