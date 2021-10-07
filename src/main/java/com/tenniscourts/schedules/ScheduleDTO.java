@@ -7,11 +7,19 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tenniscourts.tenniscourts.TennisCourtDTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ScheduleDTO {
   
   private Long id;
