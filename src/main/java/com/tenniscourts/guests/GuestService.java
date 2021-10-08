@@ -3,17 +3,16 @@ package com.tenniscourts.guests;
 import java.util.List;
 
 /**
- * Constains most of the operation to retrieve, update and create a guest into the aplication.
  * @author Samir Scheide
  */
 public interface GuestService {
 
   /**
    * Register a guest.
-   * @param guest a {@link Guest} instance.
+   * @param guest a {@link GuestDTO} instance.
    * @return a {@link GuestDTO} instance.
    */
-  GuestDTO create(Guest entity);
+  GuestDTO create(GuestDTO guest);
 
   /**
    * Retrieve all guets.
@@ -32,18 +31,19 @@ public interface GuestService {
   /**
    * Find a guest by its name.
    * @param name the {@link Guest} name.
-   * @return a {@link GuestDTO} instance with the {@link Guest} found.
+   * @return a list of {@link GuestDTO} instance with the guests {@link Guest} found.
    * @throws GuestNotFoundException if no guest is found.
    */
-  GuestDTO find(String name) throws GuestNotFoundException;
+  List<GuestDTO> find(String name) throws GuestNotFoundException;
 
   /**
    * Update a guest.
-   * @param guest the {@link Guest} entity.
+   * @param guest the {@link GuestDTO}.
+   * @param id guest unique identifier.
    * @return a {@link GuestDTO} instance with the {@link Guest} updated.
    * @throws GuestNotFoundException if no guest is found.
    */
-  GuestDTO update(Guest entity) throws GuestNotFoundException;
+  GuestDTO update(GuestDTO guest, Long id) throws GuestNotFoundException;
 
   /**
    * Delete a guest.

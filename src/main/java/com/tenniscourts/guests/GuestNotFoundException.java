@@ -1,9 +1,12 @@
 package com.tenniscourts.guests;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 /**
- * 
  * @author Samir Scheide
  */
+@ResponseStatus(code = HttpStatus.NOT_FOUND)
 public class GuestNotFoundException extends Exception {
 
   private static final long serialVersionUID = -5819527803634611380L;

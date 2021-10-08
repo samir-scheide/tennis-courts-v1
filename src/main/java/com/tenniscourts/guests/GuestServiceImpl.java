@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
 /**
- * 
  * @author Samir Scheide
  */
 @Service
@@ -26,7 +25,8 @@ public final class GuestServiceImpl implements GuestService {
    * {@inheritDoc}
    */
   @Override
-  public GuestDTO create(Guest entity) {
+  public GuestDTO create(GuestDTO guest) {
+    Guest entity = guestMapper.map(GuestDTO.builder().name(guest.getName()).build());
     return guestMapper.map(guestRepository.save(entity));
   }
 
@@ -54,9 +54,9 @@ public final class GuestServiceImpl implements GuestService {
    * {@inheritDoc}
    */
   @Override
-  public GuestDTO find(String name) throws GuestNotFoundException {
-    Optional<Guest> guest = Optional.ofNullable(guestRepository.findByName(name));
-    if (guest.isPresent()) return guestMapper.map(guest.get());
+  public List<GuestDTO> find(String name) throws GuestNotFoundException {
+    Optional<List<Guest>> guest = Optional.ofNullable(guestRepository.findByNameContainingIgnoreCase(name));
+    if (guest.isPresent() && !guest.get().isEmpty()) return guestMapper.map(guest.get());
     else {
       throw new GuestNotFoundException(name);
     }
@@ -66,13 +66,13 @@ public final class GuestServiceImpl implements GuestService {
    * {@inheritDoc}
    */
   @Override
-  public GuestDTO update(Guest entity) throws GuestNotFoundException {
-    Optional<Guest> guest = guestRepository.findById(entity.getId());
-    if (!guest.isPresent()) throw new GuestNotFoundException(entity.getId());
+  public GuestDTO update(GuestDTO guest, Long id) throws GuestNotFoundException {
+    Optional<Guest> entity = guestRepository.findById(id);
+    if (!entity.isPresent()) throw new GuestNotFoundException(id);
     else {
-      guest.get().setName(entity.getName());
+      entity.get().setName(guest.getName());
     }
-    return guestMapper.map(guest.get());
+    return guestMapper.map(entity.get());
   }
 
   /**
