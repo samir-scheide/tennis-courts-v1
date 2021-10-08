@@ -19,7 +19,8 @@ public class ReservationController extends BaseRestController {
 
   @GetMapping
   public ResponseEntity<Void> bookReservation(CreateReservationRequestDTO createReservationRequestDTO) {
-    return ResponseEntity.created(locationByEntity(reservationService.bookReservation(createReservationRequestDTO).getId())).build();
+    System.out.println("aaaaaaa");
+    return null;
   }
   
   public ResponseEntity<ReservationDTO> findReservation(Long reservationId) {

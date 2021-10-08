@@ -7,23 +7,15 @@ import javax.validation.constraints.NotNull;
 
 import com.tenniscourts.config.persistence.BaseEntity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table
-@Getter
-@Setter
-@Builder
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString
 public class Guest extends BaseEntity<Long> {
 
   private static final long serialVersionUID = 325562220286578553L;
