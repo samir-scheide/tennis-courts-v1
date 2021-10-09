@@ -25,7 +25,7 @@ public final class GuestServiceImpl implements GuestService {
    * {@inheritDoc}
    */
   @Override
-  public GuestDTO create(GuestDTO guest) {
+  public GuestDTO create(GuestCreateDTO guest) {
     Guest entity = guestMapper.map(GuestDTO.builder().name(guest.getName()).build());
     return guestMapper.map(guestRepository.save(entity));
   }
@@ -66,11 +66,12 @@ public final class GuestServiceImpl implements GuestService {
    * {@inheritDoc}
    */
   @Override
-  public GuestDTO update(GuestDTO guest, Long id) throws GuestNotFoundException {
+  public GuestDTO update(GuestUpdateDTO guest, Long id) throws GuestNotFoundException {
     Optional<Guest> entity = guestRepository.findById(id);
     if (!entity.isPresent()) throw new GuestNotFoundException(id);
     else {
       entity.get().setName(guest.getName());
+      guestRepository.save(entity.get());
     }
     return guestMapper.map(entity.get());
   }

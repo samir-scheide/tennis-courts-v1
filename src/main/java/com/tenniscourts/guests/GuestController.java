@@ -34,8 +34,7 @@ public final class GuestController implements GuestControllerApi {
    */
   @PostMapping
   public ResponseEntity<GuestDTO> create(@RequestBody @Valid GuestCreateDTO guest) {
-    GuestDTO dto = GuestDTO.builder().name(guest.getName()).build();
-    return ResponseEntity.status(HttpStatus.CREATED).body(guestService.create(dto));
+    return ResponseEntity.status(HttpStatus.CREATED).body(guestService.create(guest));
   }
   
   /**
@@ -64,7 +63,7 @@ public final class GuestController implements GuestControllerApi {
    */
   @PatchMapping("/{id}")
   public ResponseEntity<GuestDTO> update(@RequestBody GuestUpdateDTO guest, @PathVariable Long id) throws GuestNotFoundException {
-    return ResponseEntity.ok(guestService.update(GuestDTO.builder().name(guest.getName()).build(), id));
+    return ResponseEntity.ok(guestService.update(guest, id));
   }
 
   /**

@@ -9,10 +9,10 @@ public interface GuestService {
 
   /**
    * Register a guest.
-   * @param guest a {@link GuestDTO} instance.
+   * @param guest a {@link GuestCreateDTO} instance.
    * @return a {@link GuestDTO} instance.
    */
-  GuestDTO create(GuestDTO guest);
+  GuestDTO create(GuestCreateDTO guest);
 
   /**
    * Retrieve all guets.
@@ -38,12 +38,12 @@ public interface GuestService {
 
   /**
    * Update a guest.
-   * @param guest the {@link GuestDTO}.
+   * @param guest the {@link GuestUpdateDTO}.
    * @param id guest unique identifier.
    * @return a {@link GuestDTO} instance with the {@link Guest} updated.
    * @throws GuestNotFoundException if no guest is found.
    */
-  GuestDTO update(GuestDTO guest, Long id) throws GuestNotFoundException;
+  GuestDTO update(GuestUpdateDTO guest, Long id) throws GuestNotFoundException;
 
   /**
    * Delete a guest.

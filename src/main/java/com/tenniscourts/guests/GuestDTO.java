@@ -18,6 +18,9 @@ import lombok.ToString;
 public final class GuestDTO {
 
   @NotNull
+  private Long id;
+  
+  @NotNull
   private String name;
  
 }
