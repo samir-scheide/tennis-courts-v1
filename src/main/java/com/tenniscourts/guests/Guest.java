@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import com.tenniscourts.config.persistence.BaseEntity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Table
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Guest extends BaseEntity<Long> {
 

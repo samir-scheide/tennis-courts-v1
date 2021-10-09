@@ -35,6 +35,6 @@ public class ReservationServiceTest {
         reservation.setValue(new BigDecimal(10L));
 
         reservation.setSchedule(schedule);
-        Assert.assertEquals(reservationService.getRefundValue(reservation), new BigDecimal(10));
+        Assert.assertEquals(reservationService.getRefundValue(reservation), new BigDecimal(1));
     }
 }
