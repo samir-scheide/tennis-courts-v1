@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tenniscourts.config.BaseRestController;
+
 import lombok.AllArgsConstructor;
 
 /**
@@ -24,17 +25,18 @@ import lombok.AllArgsConstructor;
  */
 @Controller
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/api/guest")
-public final class GuestController implements GuestControllerApi {
+@RequestMapping("/v2/api/guest")
+public class GuestController extends BaseRestController implements GuestControllerApi  {
 
-  private final GuestService guestService;
+  private GuestServiceImpl guestService;
   
   /**
    * {@inheritDoc}
    */
   @PostMapping
   public ResponseEntity<GuestDTO> create(@RequestBody @Valid GuestCreateDTO guest) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(guestService.create(guest));
+    GuestDTO entity = guestService.create(guest);
+    return ResponseEntity.created(locationByEntity(entity.getId())).body(guestService.create(guest));
   }
   
   /**

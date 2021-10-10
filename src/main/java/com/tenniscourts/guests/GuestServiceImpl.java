@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
  */
 @Service
 @AllArgsConstructor
-public final class GuestServiceImpl implements GuestService {
+public class GuestServiceImpl implements GuestService {
   
   @Autowired
   private final GuestRepository guestRepository;

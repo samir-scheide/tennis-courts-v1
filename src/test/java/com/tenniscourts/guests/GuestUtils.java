@@ -3,13 +3,16 @@ package com.tenniscourts.guests;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public final class GuestUtils {
 
   public static GuestUpdateDTO mockGuestUpdateDTO() {
     return GuestUpdateDTO.builder().name("DummyTest").build();
   }
   
-  public static GuestCreateDTO mockCreateGuestDTO() {
+  public static GuestCreateDTO mockGuestCreateDTO() {
     return GuestCreateDTO.builder().name("DummyTest").build();
   }
   
@@ -33,6 +36,10 @@ public final class GuestUtils {
     List<GuestDTO> list = new ArrayList<>();
     list.add(mockGuestDTO());
     return list;
+  }
+  
+  public static <T> String toJSONString(T value) throws JsonProcessingException {
+    return new ObjectMapper().writeValueAsString(value);
   }
   
 }

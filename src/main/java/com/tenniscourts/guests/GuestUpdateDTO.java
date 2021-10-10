@@ -15,7 +15,7 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class GuestUpdateDTO {
+public class GuestUpdateDTO {
 
   @NotNull
   private String name;

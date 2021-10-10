@@ -15,7 +15,7 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class GuestDTO {
+public class GuestDTO {
 
   @NotNull
   private Long id;

@@ -3,6 +3,7 @@ package com.tenniscourts.guests;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
 import com.tenniscourts.TennisCourtsMapper;
@@ -12,7 +13,7 @@ import com.tenniscourts.TennisCourtsMapper;
  * @author Samir Scheide
  */
 @Component
-@Mapper(componentModel = "spring")
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface GuestMapper extends TennisCourtsMapper<GuestDTO, Guest> {
   
   /**

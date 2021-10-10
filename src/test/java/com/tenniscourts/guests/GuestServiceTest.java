@@ -1,6 +1,6 @@
 package com.tenniscourts.guests;
 
-import static com.tenniscourts.guests.GuestUtils.mockCreateGuestDTO;
+import static com.tenniscourts.guests.GuestUtils.mockGuestCreateDTO;
 import static com.tenniscourts.guests.GuestUtils.mockGuest;
 import static com.tenniscourts.guests.GuestUtils.mockGuestDTO;
 import static com.tenniscourts.guests.GuestUtils.mockGuestDTOList;
@@ -14,24 +14,17 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import java.util.Optional;
 
 import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 
 /**
  * @author Samir Scheide
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
-@ContextConfiguration(classes = {GuestService.class,GuestRepository.class})
 public final class GuestServiceTest {
 
   @Mock
@@ -41,7 +34,7 @@ public final class GuestServiceTest {
   private GuestMapper guestMapper;
   
   @InjectMocks
-  private GuestServiceImpl guestService;
+  private GuestServiceImpl guestServiceImpl;
   
   @Before
   public void setUp() {
@@ -52,17 +45,17 @@ public final class GuestServiceTest {
   
   @Test
   public void createAndRetrieveGuestByNameTest() throws GuestNotFoundException {
-    Mockito.when(guestService.create(mockCreateGuestDTO())).thenReturn(mockGuestDTO());
-    Mockito.when(guestService.find("DummyTest")).thenReturn(mockGuestDTOList());
-    GuestDTO expectedGuestDTO = guestService.create(mockCreateGuestDTO());
-    assertTrue(guestService.find(expectedGuestDTO.getName()).stream().anyMatch(guest -> guest.getName().contains(expectedGuestDTO.getName())));
+    Mockito.when(guestServiceImpl.create(mockGuestCreateDTO())).thenReturn(mockGuestDTO());
+    Mockito.when(guestServiceImpl.find("DummyTest")).thenReturn(mockGuestDTOList());
+    GuestDTO expectedGuestDTO = guestServiceImpl.create(mockGuestCreateDTO());
+    assertTrue(guestServiceImpl.find(expectedGuestDTO.getName()).stream().anyMatch(guest -> guest.getName().contains(expectedGuestDTO.getName())));
   } 
 
   @Test
   public void updatendRetrieveGuestByIdTest() throws GuestNotFoundException {
-    Mockito.when(guestService.update(mockGuestUpdateDTO(), anyLong())).thenReturn(mockGuestDTO());
-    Mockito.when(guestService.get(anyLong())).thenReturn(mockGuestDTO());
-    GuestDTO expectedGuestDTO = guestService.update(mockGuestUpdateDTO(), anyLong());
+    Mockito.when(guestServiceImpl.update(mockGuestUpdateDTO(), anyLong())).thenReturn(mockGuestDTO());
+    Mockito.when(guestServiceImpl.get(anyLong())).thenReturn(mockGuestDTO());
+    GuestDTO expectedGuestDTO = guestServiceImpl.update(mockGuestUpdateDTO(), anyLong());
     assertEquals(expectedGuestDTO.getId(), mockGuestDTO().getId());
     assertEquals(expectedGuestDTO.getName(), mockGuestDTO().getName());
   } 
