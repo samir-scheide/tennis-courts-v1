@@ -41,7 +41,6 @@ public class GuestController extends BaseRestController implements GuestControll
   
   /**
    * {@inheritDoc}
-   * @throws GuestNotFoundException 
    */
   @GetMapping
   public ResponseEntity<List<GuestDTO>> list(@RequestParam(required = false) String name) throws GuestNotFoundException {
@@ -71,7 +70,7 @@ public class GuestController extends BaseRestController implements GuestControll
   /**
    * {@inheritDoc}
    */  
-  @DeleteMapping("/id")
+  @DeleteMapping("/{id}")
   public ResponseEntity<Void> delete(@PathVariable Long id) throws GuestNotFoundException {
     GuestDTO dto = guestService.get(id);
     if (dto != null) guestService.delete(id);
