@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
-import com.tenniscourts.TennisCourtsMapper;
+import com.tenniscourts.config.TennisCourtsMapper;
 
 /**
  * Guest mapper.

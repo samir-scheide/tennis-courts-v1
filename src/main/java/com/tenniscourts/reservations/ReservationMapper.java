@@ -1,16 +1,15 @@
 package com.tenniscourts.reservations;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
-@Component
-@Mapper(componentModel = "spring")
-public interface ReservationMapper {
+import com.tenniscourts.config.TennisCourtsMapper;
 
-  Reservation map(ReservationDTO source);
-  
-  ReservationDTO map(Reservation source);
-  
+@Component
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+public interface ReservationMapper extends TennisCourtsMapper<ReservationDTO, Reservation> {
+
   Reservation map(CreateReservationRequestDTO source);
   
 }

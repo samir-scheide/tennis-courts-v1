@@ -1,4 +1,6 @@
-package com.tenniscourts;
+package com.tenniscourts.config;
+
+import org.mapstruct.InheritInverseConfiguration;
 
 import com.tenniscourts.config.persistence.BaseEntity;
 
@@ -23,6 +25,7 @@ public interface TennisCourtsMapper<T, B extends BaseEntity<?>> {
    * @param source a DTO instance  
    * @return the entity {@link BaseEntity} instance
    */
+  @InheritInverseConfiguration
   B map(T source);
   
 }

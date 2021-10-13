@@ -1,14 +1,15 @@
 package com.tenniscourts.tenniscourts;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
+import com.tenniscourts.config.TennisCourtsMapper;
+
 @Component
-@Mapper(componentModel = "spring")
-public interface TennisCourtMapper {
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+public interface TennisCourtMapper extends TennisCourtsMapper<TennisCourtDTO, TennisCourt> {
   
-  TennisCourtDTO map(TennisCourt source);
-  
-  TennisCourt map(TennisCourtDTO source);
+  TennisCourt map(TennisCourtCreateDTO tennisCourt);
   
 }

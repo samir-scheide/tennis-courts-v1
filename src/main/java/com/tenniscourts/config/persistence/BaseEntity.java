@@ -22,7 +22,6 @@ import lombok.Setter;
 /**
  * Base class that should be used by all entity related classes. It keeps all common fields centralized, magin it easier to maintain and the audit scheme work.
  * @author Samir Scheide
- *
  * @param <ID> can be any type, it will the {@link #id}, or unique identifier, type.
  */
 @MappedSuperclass

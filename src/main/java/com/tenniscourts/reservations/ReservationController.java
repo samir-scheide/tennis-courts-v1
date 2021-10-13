@@ -1,38 +1,49 @@
 package com.tenniscourts.reservations;
 
-import com.tenniscourts.config.BaseRestController;
-import lombok.AllArgsConstructor;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-@RequestMapping("/reservation")
-@AllArgsConstructor
-public class ReservationController extends BaseRestController {
+import com.tenniscourts.config.BaseRestController;
 
-	@Autowired
+import lombok.AllArgsConstructor;
+
+/**
+ * @author Samir Scheide
+ */
+@Controller
+@AllArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("/v2/api/reservation")
+public class ReservationController extends BaseRestController implements ReservationControllerApi {
+
   private final ReservationService reservationService;
 
-  @GetMapping
+  /**
+   * {@inheritDoc}
+   */
   public ResponseEntity<Void> bookReservation(CreateReservationRequestDTO createReservationRequestDTO) {
-    System.out.println("aaaaaaa");
-    return null;
+    return ResponseEntity.created(locationByEntity(reservationService.bookReservation(createReservationRequestDTO).getId())).build();
   }
-  
+
+  /**
+   * {@inheritDoc}
+   */
   public ResponseEntity<ReservationDTO> findReservation(Long reservationId) {
     return ResponseEntity.ok(reservationService.findReservation(reservationId));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public ResponseEntity<ReservationDTO> cancelReservation(Long reservationId) {
     return ResponseEntity.ok(reservationService.cancelReservation(reservationId));
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public ResponseEntity<ReservationDTO> rescheduleReservation(Long reservationId, Long scheduleId) {
     return ResponseEntity.ok(reservationService.rescheduleReservation(reservationId, scheduleId));
   }
-  
 }
