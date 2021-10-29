@@ -3,22 +3,19 @@ package com.tenniscourts.guests;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author Samir Scheide
  */
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GuestServiceImpl implements GuestService {
   
-  @Autowired
   private final GuestRepository guestRepository;
  
-  @Autowired
   private final GuestMapper guestMapper;
   
   /**

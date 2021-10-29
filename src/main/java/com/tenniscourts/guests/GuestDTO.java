@@ -27,5 +27,7 @@ public class GuestDTO {
   @ApiModelProperty(value = "Guest name.", required = true)
   @NotNull
   private String name;
+  
+  private String ipNumberUpdate;
  
 }

@@ -1,4 +1,4 @@
-insert into guest(id, name) values(1, 'Roger Federer');
+insert into guest(id, name, ip_number_update) values(1, 'Roger Federer', '127.0.0.1');
 insert into guest(id, name) values(2, 'Rafael Nadal');
 
 insert into tennis_court(id, name) values(1, 'Roland Garros - Court Philippe-Chatrier');
